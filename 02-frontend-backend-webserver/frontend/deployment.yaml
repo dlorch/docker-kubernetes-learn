@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          imagePullPolicy: Never # important! otherwise kubernets tries to download from public registry
+          image: daniel/frontend
+          env:
+          - name: GET_HOSTS_FROM
+            value: dns # use internal service for frontend to find backend's IP 
+          ports:
+          - containerPort: 5000
