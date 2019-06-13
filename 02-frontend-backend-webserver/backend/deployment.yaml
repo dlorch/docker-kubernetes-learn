@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          imagePullPolicy: Never # important! otherwise kubernets tries to download from public registry
+          imagePullPolicy: Never # important! otherwise kubernets tries to download from public registry (don't do this in production)
           image: daniel/backend
           env:
           - name: GET_HOSTS_FROM
